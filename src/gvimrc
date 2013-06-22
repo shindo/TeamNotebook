@@ -1,0 +1,10 @@
+set autoread
+set autoindent
+set autochdir
+set cindent
+set number
+syntax on
+set shiftwidth = 4
+set tabstop = 4
+colorscheme desert
+set gfn = Monospace\ 12
