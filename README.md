@@ -7,7 +7,6 @@
 <h1>TODO list</h1>
 
 * Geometry (2D, 3D, simple delaunay?, semi-planes)
-* Linear Algebra (Gauss elimination, rank, simplex, fft)
 * Number Theory (modular, chinese, diophantine, gcdex)
 * Combinatorics (from e-maxx)
 * Strings (suffix ..., z-function, hashing, palindromes, duval)
