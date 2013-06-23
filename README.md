@@ -5,7 +5,6 @@
 
 <h1>TODO list</h1>
 
-* Simple Graph Algos (scc, 2-sat)
 * Geometry (2D, 3D, simple delaunay?, semi-planes)
 * Linear Algebra (Gauss elimination, rank, simplex, fft)
 * Number Theory (modular, chinese, diophantine, gcdex)
