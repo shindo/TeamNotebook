@@ -9,6 +9,5 @@
 * Geometry (2D, 3D, simple delaunay?, semi-planes)
 * Number Theory (modular, chinese, diophantine, gcdex)
 * Combinatorics (from e-maxx)
-* Strings (suffix ..., z-function, hashing, palindromes, duval)
 * Data structures (fenwick, treap?, stack/queue for min)
 * Misc (formula, primes, facts, pics)
