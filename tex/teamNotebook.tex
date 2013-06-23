@@ -50,6 +50,16 @@ escapeinside={\%*}{*)},         % if you want to add a comment within your code
 \lstinputlisting{../src/cutVertices.cpp}
 \section{Min-Cost Max-Flow}
 \lstinputlisting{../src/minCostMaxFlow.cpp}
+\section{Strongly Connected Components}
+\lstinputlisting{../src/scc.cpp}
+
+\section{2-SAT}
+Problem: $(a ~ \vee ~ c) ~ \& ~ (a ~ \vee ~ !b) ~\& ~\ldots$
+
+Edges: $(a ~ \vee ~ b)$ is equivalent to $(!a \Rightarrow b) \vee (!b \Rightarrow a)$
+
+Solution: there is no solution iff for some $x$ $compID[x] = compID[!x]$, else see code below
+\lstinputlisting{../src/2-sat.cpp}
 
 
 \end{document}
