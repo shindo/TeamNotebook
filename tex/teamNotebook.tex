@@ -25,36 +25,46 @@ escapeinside={\%*}{*)},         % if you want to add a comment within your code
 \usepackage[top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
 
 \usepackage{titlesec}
-\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\section}{\large\bfseries}{\thesection}{2em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
 
 \pagestyle{myheadings}
 \markright{Team Notebook (Perm SU: Meerkats)\hfill}
 
 \begin{document}
 
-\section{template}
+\tableofcontents
+
+
+
+\newpage
+\section{Startup templates}
+\subsection{template}
 \lstinputlisting{../src/template.cpp}
-\section{gvimrc}
+\subsection{gvimrc}
 \lstinputlisting{../src/gvimrc}
 
-\section{Kuhn Max Matching}
-\lstinputlisting{../src/kuhnMaxMatching.cpp}
-\section{Dinic Max-Flow}
-\lstinputlisting{../src/dinic.cpp}
-\section{Hungary Algo}
-\lstinputlisting{../src/assignmentHungary.cpp}
-\section{Min Cut}
-\lstinputlisting{../src/minCut.cpp}
-\section{Bridges}
-\lstinputlisting{../src/bridges.cpp}
-\section{Cut Vertices}
-\lstinputlisting{../src/cutVertices.cpp}
-\section{Min-Cost Max-Flow}
-\lstinputlisting{../src/minCostMaxFlow.cpp}
-\section{Strongly Connected Components}
-\lstinputlisting{../src/scc.cpp}
 
-\section{2-SAT}
+
+\newpage
+\section{Graph Algorithms}
+\subsection{Kuhn Max Matching}
+\lstinputlisting{../src/kuhnMaxMatching.cpp}
+\subsection{Dinic Max-Flow}
+\lstinputlisting{../src/dinic.cpp}
+\subsection{Hungary Algo}
+\lstinputlisting{../src/assignmentHungary.cpp}
+\subsection{Min Cut}
+\lstinputlisting{../src/minCut.cpp}
+\subsection{Bridges}
+\lstinputlisting{../src/bridges.cpp}
+\subsection{Cut Vertices}
+\lstinputlisting{../src/cutVertices.cpp}
+\subsection{Min-Cost Max-Flow}
+\lstinputlisting{../src/minCostMaxFlow.cpp}
+\subsection{Strongly Connected Components}
+\lstinputlisting{../src/scc.cpp}
+\subsection{2-SAT}
 Problem: $(a ~ \vee ~ c) ~ \& ~ (a ~ \vee ~ !b) ~\& ~\ldots$
 
 Edges: $(a ~ \vee ~ b)$ is equivalent to $(!a \Rightarrow b) \vee (!b \Rightarrow a)$
@@ -62,24 +72,32 @@ Edges: $(a ~ \vee ~ b)$ is equivalent to $(!a \Rightarrow b) \vee (!b \Rightarro
 Solution: there is no solution iff for some $x$ $compID[x] = compID[!x]$, else see code below
 \lstinputlisting{../src/2-sat.cpp}
 
-\section{Gauss Elimination}
+
+
+\newpage
+\section{Linear Algebra}
+\subsection{Gauss Elimination}
 \lstinputlisting{../src/gauss.cpp}
-\section{Fast-Fourier Transform}
+\subsection{Fast-Fourier Transform}
 \lstinputlisting{../src/fft.cpp}
-\section{Simplex}
+\subsection{Simplex}
 \lstinputlisting{../src/simplex.cpp}
 
-\section{Suffix Array}
+
+
+\newpage
+\section{String Algorithms}
+\subsection{Suffix Array}
 \lstinputlisting{../src/suffixArray.cpp}
-\section{Suffix Tree from Suffix Array}
+\subsection{Suffix Tree from Suffix Array}
 \lstinputlisting{../src/suffixTree.cpp}
-\section{Z-function}
+\subsection{Z-function}
 \lstinputlisting{../src/zFunction.cpp}
-\section{Suffix Automata}
+\subsection{Suffix Automata}
 \lstinputlisting{../src/suffixAutomata.cpp}
-\section{Palindromes}
+\subsection{Palindromes}
 \lstinputlisting{../src/palindromes.cpp}
-\section{Lyndon decomposition $\&$ Duval}
+\subsection{Lyndon decomposition $\&$ Duval}
 \lstinputlisting{../src/duval.cpp}
 
 \end{document}
