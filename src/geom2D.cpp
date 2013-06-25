@@ -71,7 +71,7 @@ int getTangent(const pt & A, const pt & O, double r, pt & M, pt & N) {
 	double L = mySqrt(sqr(d) - sqr(r));
 	v = v.norm(L);
 	M = A + v.rotate(alpha);  
-	N = A - v.rotate(alpha);
+	N = A + v.rotate(-alpha);
 	if(doubleEqual(r, d)) return 1;
 	return 2;
 }
@@ -99,4 +99,68 @@ void getInTangent(pt A, double rA, pt B, double rB, pair<pt, pt> & P, pair<pt, p
 	getTangent(I, B, rB, M2, N2);
 	if(I.isOnLine(M1, M2)) P = mp(M1, M2), Q = mp(N1, N2);
 	else P = mp(M1, N2), Q = mp(N1, M2);
+}
+
+//принадлежность точки невыпуклому многоугольнику
+//0 - на границе, 1 - вне, -1 - внутри
+//F(y)=f(x1,x2,y)·f(x2,x3,y)···f(xn-1,xn,y)·f(xn,x1,y)
+//f: пересекает ли луч выпущенный из точки middle вдоль оси x в направлении увеличения x отрезок (a,b) с учетом всех крайних случаев
+public static int checkPolygon(Point2D a, Point2D b, Point2D middle)
+{
+    long ax = a.x - middle.x;
+    long ay = a.y - middle.y;
+    long bx = b.x - middle.x;
+    long by = b.y - middle.y;
+    if (ay * by > 0)
+        return 1;
+    int s = Long.signum(ax * by - ay * bx);
+    if (s == 0)
+    {
+        if (ax * bx <= 0)
+            return 0;
+        return 1;
+    }
+    if (ay < 0)
+        return -s;
+    if (by < 0)
+        return s;
+    return 1;
+}
+
+//теорема Пика,решетчатый многоугольник
+//S-площадь
+//точек с целочисленными координатами:
+//I - строго внутри, B - на границе
+//S=I+B/2-1
+
+//delaunayTriangulation
+typedef double T;
+struct triple {
+    int i, j, k;
+    triple() {}
+    triple(int i, int j, int k) : i(i), j(j), k(k) {}
+};
+vector<triple> delaunayTriangulation(vector<T>& x, vector<T>& y) {
+	int n = x.size();
+	vector<T> z(n);
+	vector<triple> ret;
+	for (int i = 0; i < n; i++)
+	    z[i] = x[i] * x[i] + y[i] * y[i];
+	for (int i = 0; i < n-2; i++) {
+	    for (int j = i+1; j < n; j++) {
+		for (int k = i+1; k < n; k++) {
+		    if (j == k) continue;
+		    double xn = (y[j]-y[i])*(z[k]-z[i]) - (y[k]-y[i])*(z[j]-z[i]);
+		    double yn = (x[k]-x[i])*(z[j]-z[i]) - (x[j]-x[i])*(z[k]-z[i]);
+		    double zn = (x[j]-x[i])*(y[k]-y[i]) - (x[k]-x[i])*(y[j]-y[i]);
+		    bool flag = zn < 0;
+		    for (int m = 0; flag && m < n; m++)
+			flag = flag && ((x[m]-x[i])*xn + 
+					(y[m]-y[i])*yn + 
+					(z[m]-z[i])*zn <= 0);
+		    if (flag) ret.push_back(triple(i, j, k));
+		}
+	    }
+	}
+	return ret;
 }
