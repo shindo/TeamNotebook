@@ -1,14 +1,6 @@
-struct item {
-	int key, prior;
-	item * l, * r;
-	item() { }
-	item (int key, int prior) : key(key), prior(prior), l(NULL), r(NULL) { }
-};
-typedef item * pitem;
-
+// key(l) < key, key(r) >= key
 void split (pitem t, int key, pitem & l, pitem & r) {
-	if (!t)
-		l = r = NULL;
+	if (!t) l = r = NULL;
 	else if (key < t->key)
 		split (t->l, key, l, t->l),  r = t;
 	else
@@ -16,8 +8,7 @@ void split (pitem t, int key, pitem & l, pitem & r) {
 }
 
 void insert (pitem & t, pitem it) {
-	if (!t)
-		t = it;
+	if (!t)	t = it;
 	else if (it->prior > t->prior)
 		split (t, it->key, it->l, it->r),  t = it;
 	else
@@ -25,8 +16,7 @@ void insert (pitem & t, pitem it) {
 }
 
 void merge (pitem & t, pitem l, pitem r) {
-	if (!l || !r)
-		t = l ? l : r;
+	if (!l || !r) t = l ? l : r;
 	else if (l->prior > r->prior)
 		merge (l->r, l->r, r),  t = l;
 	else
