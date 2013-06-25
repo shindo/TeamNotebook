@@ -8,4 +8,3 @@
 <h1>TODO list</h1>
 
 * Geometry (2D, 3D, simple delaunay?, semi-planes)
-* Data structures (fenwick, treap?, stack/queue for min)
