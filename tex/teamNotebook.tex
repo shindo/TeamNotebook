@@ -21,6 +21,13 @@ breakatwhitespace=false,    	% sets if automatic breaks should only happen at wh
 escapeinside={\%*}{*)},         % if you want to add a comment within your code
 }
 
+\usepackage{anyfontsize} %For arbitrary font sizes
+\usepackage[T1]{fontenc}  
+%\usepackage[margin=1cm]{geometry} % To make margins smaller
+\usepackage{microtype}  % To improve hyphenation, justification etc...
+\usepackage{pdfpages}
+%\pgfpagesuselayout{2 on 1}[a4paper,border shrink=1mm]
+
 %\usepackage[cm]{fullpage}
 \usepackage[top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
 
@@ -48,8 +55,8 @@ escapeinside={\%*}{*)},         % if you want to add a comment within your code
 
 \newpage
 \section{Graph Algorithms}
-\subsection{Kuhn Max Matching}
-\lstinputlisting{../src/kuhnMaxMatching.cpp}
+%\subsection{Kuhn Max Matching}
+%\lstinputlisting{../src/kuhnMaxMatching.cpp}
 \subsection{Dinic Max-Flow}
 \lstinputlisting{../src/dinic.cpp}
 \subsection{Hungary Algo}
@@ -105,5 +112,8 @@ Solution: there is no solution iff for some $x$ $compID[x] = compID[!x]$, else s
 \newpage
 \section{Modular}
 \lstinputlisting{../src/modular.cpp}
+
+\newpage
+\includepdf[scale=0.95,pages={-}, pagecommand={\thispagestyle{myheadings}}]{../misc/cheatsheet.pdf}
 
 \end{document}
