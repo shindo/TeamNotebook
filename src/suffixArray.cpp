@@ -47,3 +47,22 @@ void makeLCP(int * s, int * suftab, int * isuftab, int N, int * lcptab) {
 		if(cur < 0) cur = 0;
 	}
 }
+
+//
+int lcp[MAXN]; // lcp[i] = LCP(sufar[i], sufar[i + 1])
+int sufar[MAXN]; // suffix array
+int inv[MAXN]; // reverse suffix array
+char s[MAXN]; // string
+
+int n = size(s);
+void kasai() {
+	int now = 0;
+	REP(i,0,n) {
+		int p=inv[i];
+		if (p == 0) continue;
+		while (sufar[p] + now < n && sufar[p - 1] + now < n && 
+			s[sufar[p] + now] == s[sufar[p - 1] + now]) ++now;
+		lcp[p - 1] = now;
+		now = max(0, now - 1);
+	}
+}

@@ -87,3 +87,36 @@ bool getIntersection(const pt & A, const pt & nA, const pt & B, const pt & nB, p
 	Q = P + n;
 	return true;
 }
+
+//Nearest_neighbour_search_random_line
+	srand(time(NULL));
+	double A=rand(),B=rand(),C=rand(),g=sqrt(0.+A*A+B*B+C*C);
+	A/=g; B/=g; C/=g;
+	for(int i=0;i<n;++i)
+		v.push_back(make_pair(A*x[i]+B*y[i]+C*z[i],i));
+	sort(v.begin(),v.end());
+	for(int i=0;i<n;++i) {
+		long long ans=0; int ind;
+		if (i) ans=dist(v[i].second,v[i-1].second),ind=i-1;
+		else ans=dist(v[i].second,v[i+1].second),ind=i+1;
+		int l=i-1,r=i+1;
+		while(true) {
+			bool ok=0;
+			if (l>=0&&(v[i].first-v[l].first)*(v[i].first-v[l].first)<ans) {
+				long long cur=dist(v[i].second,v[l].second);
+				if (cur<ans) ans=cur,ind=l;
+				--l; ok=1;
+			}
+			if (r<n&&(v[r].first-v[i].first)*(v[r].first-v[i].first)<ans) {
+				long long cur=dist(v[i].second,v[r].second);
+				if (cur<ans) ans=cur,ind=r;
+				++r; ok=1;
+			}
+			if (!ok) break;
+		}
+		ansp[v[i].second]=v[ind].second;
+	}
+	for(int i=0;i<n;++i) {
+		if (i) printf(" ");
+		printf("%d",ansp[i]+1);
+	}
