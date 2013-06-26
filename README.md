@@ -6,5 +6,3 @@
 * Stanford Cheat Sheet: [link](http://www.stanford.edu/~liszt90/acm/cheatsheet.pdf)
 
 <h1>TODO list</h1>
-
-* Geometry (2D, 3D, simple delaunay?, semi-planes)
