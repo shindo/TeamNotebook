@@ -62,7 +62,7 @@ int getIntersection(const pt & A, const pt & B, const pt & C, const pt & D, pt &
 // Intersection of line (A, B) & plane (C, D, E) 
 int getIntersection(const pt & A, const pt & B, const pt & C, const pt & D, const pt & E, pt & O) {
 	pt v = B - A; 
-	double V1 = (C - A) * (D - A) ^ (E - A); // thetrahedra (A, C, D, E) volume
+	double V1 = (C - A) * (D - A) ^ (E - A); // tetrahedra (A, C, D, E) volume
 	double V2 = (D - B) * (C - B) ^ (E - B);
 	double V = V1 + V2;
 	v = v / V;
