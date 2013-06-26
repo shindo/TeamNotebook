@@ -37,7 +37,6 @@ pSeg init(int lcp, int lb, int rb) {
 pSeg makeTree() {
 	stack.size = 0;
 	pSeg lastInterval = NULL;
-	int lastSingleton = 0;
 	stack.push(init(0, 0, -1));
 	REP(i, 1, N) {
 		int lb = i - 1;

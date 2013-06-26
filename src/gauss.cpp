@@ -1,8 +1,4 @@
 // Ax = B. RETURN: determinant, A -> A^(-1), B -> solution
-typedef double T;
-typedef vector<T> VT;
-typedef vector<VT> VVT;
-
 T GaussJordan(VVT &a, VT &b) {
 	const int n = a.size();
 	ve<int> irow(n), icol(n), ipiv(n);
