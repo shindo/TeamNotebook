@@ -15,7 +15,7 @@ int getIntersection(const pt & A, const pt & B, const pt & C, const pt & D,	pt &
 	double s1 = (C - A) * (D - A);
 	double s2 = (D - B) * (C - B);
 	double s = s1 + s2;
-	if(doubleEqual(s, 0) ) {
+	if(eq(s, 0) ) {
 		if(!A.isOnLine(C, D) ) {
 			return 0;
 		}
@@ -30,11 +30,11 @@ int getIntersection(const pt & A, const pt & B, const pt & C, const pt & D,	pt &
 // Intersection of circles (A, rA) & (B, rB)
 int getIntersection(const pt & A, double rA, const pt & B, double rB, pt & M, pt & N) {
 	double d = A.distTo(B);
-	if(doubleLess(rA + rB, d) || doubleLess(d, fabs(rA - rB)) )	{
+	if(ls(rA + rB, d) || ls(d, fabs(rA - rB)) )	{
 		return 0;
 	}
 	double a = (sqr(rA) - sqr(rB) + sqr(d) ) / 2 / d;
-	double h = mySqrt(sqr(rA) - sqr(a));
+	double h = sqrt(sqr(rA) - sqr(a));
 	pt v = B - A;
 	pt u = v.rotate();
 	v = v.norm(a); 
@@ -49,12 +49,12 @@ int getIntersection(const pt & A, double rA, const pt & B, double rB, pt & M, pt
 // Intersection of line (A, B) & circle (O, r)
 int getIntersection(const pt & A, const pt & B,	const pt & O, double r,	pt & M,	pt & N) {
 	double h = O.distTo(A, B); 
-	if(doubleLess(r, h) ) {
+	if(ls(r, h) ) {
 		return 0;
 	}
 	pt H = O.getH(A, B);
 	pt v = B - A;
-	double k = mySqrt(sqr(r) - sqr(h) );
+	double k = sqrt(sqr(r) - sqr(h) );
 	v = v.norm(k);
 	M = H + v;
 	N = H - v;
@@ -66,13 +66,13 @@ int getIntersection(const pt & A, const pt & B,	const pt & O, double r,	pt & M,	
 int getTangent(const pt & A, const pt & O, double r, pt & M, pt & N) {
 	pt v = O - A; 
 	double d = v.len();
-	if(doubleLess(d, r) ) return 0;
+	if(ls(d, r) ) return 0;
 	double alpha = asin(r / d);
-	double L = mySqrt(sqr(d) - sqr(r));
+	double L = sqrt(sqr(d) - sqr(r));
 	v = v.norm(L);
 	M = A + v.rotate(alpha);  
-	N = A - v.rotate(alpha);
-	if(doubleEqual(r, d)) return 1;
+	N = A + v.rotate(-alpha);
+	if(eq(r, d)) return 1;
 	return 2;
 }
 
@@ -82,6 +82,8 @@ void getOutTangent(pt A, double rA, pt B, double rB, pair<pt, pt> & P, pair<pt, 
 		swap(rA, rB);
 		swap(A, B);
 	}
+	double d = (A - B).len();
+	double r = rB - rA;
 	pt u = (A - B).rotate(asin(r / d)).rotate().norm(rA);
 	P.first = A + u;
 	Q.first = A - u;

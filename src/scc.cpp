@@ -1,27 +1,26 @@
-// need: graph (head, to, nxt), reverse graph (rhead, rto, rnxt)
-// used, compID, order
-void dfs1(int v) {
-	used[v] = true;
+void dfs(int v) {
+	timer++;
+	dfsnum[v] = lownum[v] = timer;
+	st[stSize++] = v;
+	inSt[v] = true;
+
 	for(int e = head[v]; e != -1; e = nxt[e]) {
-		if(!used[to[e]]) dfs1(to[e]);
+		int w = to[e];
+		if(dfsnum[w] == 0) {
+			dfs(w, v);
+			lownum[v] = min(lownum[v], lownum[w]);
+		} else if(inSt[w]) {
+			lownum[v] = min(lownum[v], dfsnum[w]);
+		}
 	}
-	order.pb(v);
-}
-void dfs2(int v, int id) {
-	used[v] = true;
-	compID[v] = id;
-	for(int e = rhead[v]; e != -1; e = rnxt[e]) {
-		if(!used[ rto[e] ]) dfs2(rto[e]);
-	}
-}
-void main() {
-	_(used, false);
-	REP(i, 0, N)
-		if(!used[i]) dfs1(i);
-	_(used, false);
-	int id = 0;
-	REPD(i, 0, N) {
-		int v = order[i];
-		if(!used[v]) dfs2(v, id++);
+
+	if(lownum[v] == dfsnum[v]) {
+		int w;
+		do {
+			w = st[--stSize];
+			inSt[w] = false;
+			comp[w] = compID;
+		} while(w != v);
+		compID++;
 	}
 }
